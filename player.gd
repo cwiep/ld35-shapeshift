@@ -10,7 +10,8 @@ var stairs_move_target
 var current_stairs
 
 const TARGETS = {
-	"book": 0
+	"book": 0,
+	"computer": 1
 }
 
 var current_target
@@ -48,7 +49,9 @@ func _on_player_area_enter( area ):
 		current_stairs = area
 		stairs_move_target = area.get_stairs_target(get_pos())
 	elif area.is_in_group("book") and current_target == TARGETS["book"]:
-		print("can collect")
+		print("can collect book")
+	elif area.is_in_group("computer") and current_target == TARGETS["computer"]:
+		print("can collect computer")
 
 func _on_player_area_exit( area ):
 	can_use_stairs = false

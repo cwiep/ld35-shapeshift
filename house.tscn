@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://images/house.png" type="Texture" id=1]
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://stairs.gd" type="Script" id=3]
 [ext_resource path="res://images/book.png" type="Texture" id=4]
+[ext_resource path="res://images/computer.png" type="Texture" id=5]
+[ext_resource path="res://prof.gd" type="Script" id=6]
+[ext_resource path="res://images/prof_m.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -16,6 +19,11 @@ custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
 [sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -76,6 +84,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 2
+__meta__ = { "_editor_collapsed":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
 
@@ -181,7 +190,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = { "_edit_group_":true }
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="target_book"]
 
@@ -193,5 +202,73 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="target_book"]
 
 texture = ExtResource( 4 )
+
+[node name="target_computer" type="Area2D" parent="." groups=[ "computer" ]]
+
+transform/pos = Vector2( -211.033, -32.9374 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 4.81964, -0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="target_computer"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="target_computer"]
+
+texture = ExtResource( 5 )
+
+[node name="guests" type="Node2D" parent="."]
+
+[node name="professor" type="Area2D" parent="guests"]
+
+transform/pos = Vector2( -42.2345, 418.63 )
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.22312, -0, 0, 4.73326, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+__meta__ = { "_edit_group_":true }
+
+[node name="Sprite" type="Sprite" parent="guests/professor"]
+
+transform/scale = Vector2( 6.34723, 6.34723 )
+texture = ExtResource( 7 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guests/professor"]
+
+transform/scale = Vector2( 1.22312, 4.73326 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="look_left" type="RayCast2D" parent="guests/professor"]
+
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 2
+type_mask = 16
+
+[node name="look_right" type="RayCast2D" parent="guests/professor"]
+
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 2
+type_mask = 16
 
 
