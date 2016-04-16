@@ -43,7 +43,6 @@ texture = ExtResource( 1 )
 [node name="player" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 170.329, 414.518 )
-linear_damp = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -244,6 +243,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 5
 script/script = ExtResource( 6 )
 __meta__ = { "_edit_group_":true }
 
@@ -257,7 +257,6 @@ region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="guests/professor"]
 
-visibility/visible = false
 transform/scale = Vector2( 1.22312, 4.73326 )
 shape = SubResource( 4 )
 trigger = false
@@ -265,7 +264,6 @@ _update_shape_index = 0
 
 [node name="look_left" type="RayCast2D" parent="guests/professor"]
 
-visibility/visible = false
 enabled = true
 cast_to = Vector2( -30, 0 )
 layer_mask = 2
@@ -273,7 +271,6 @@ type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="guests/professor"]
 
-visibility/visible = false
 enabled = true
 cast_to = Vector2( 30, 0 )
 layer_mask = 2
