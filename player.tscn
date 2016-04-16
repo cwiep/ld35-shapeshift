@@ -57,6 +57,20 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
+[node name="look_left" type="RayCast2D" parent="."]
+
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 2
+type_mask = 16
+
+[node name="look_right" type="RayCast2D" parent="."]
+
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 2
+type_mask = 16
+
 [connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
 
 [connection signal="area_exit" from="." to="." method="_on_player_area_exit"]

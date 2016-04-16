@@ -9,12 +9,19 @@ var is_using_stairs
 var stairs_move_target
 var current_stairs
 
+const TARGETS = {
+	"book": 0
+}
+
+var current_target
+
 func _ready():
 	set_fixed_process(true)
 	player_image = get_node("Sprite")
 	anim_node = get_node("Sprite/walk_anim")
 	can_use_stairs = false
 	is_using_stairs = false
+	current_target = TARGETS["book"]
 	
 func _fixed_process(delta):
 	if is_using_stairs:
@@ -26,11 +33,11 @@ func _fixed_process(delta):
 			stairs_move_target = current_stairs.get_stairs_target(get_pos())
 	else:
 		# otherwise allow normal motion
-		if Input.is_action_pressed("ui_left"):
-			translate(Vector2(-200 * delta, 0))
+		if Input.is_action_pressed("ui_left") and !get_node("look_left").is_colliding():
+			translate(Vector2(-400 * delta, 0))
 			#anim_node.play("walk")
-		elif Input.is_action_pressed("ui_right"):
-			translate(Vector2(200 * delta, 0))
+		elif Input.is_action_pressed("ui_right") and !get_node("look_right").is_colliding():
+			translate(Vector2(400 * delta, 0))
 			#anim_node.play("walk")
 		if Input.is_action_pressed("ui_accept") and can_use_stairs:
 			is_using_stairs = true
@@ -40,6 +47,8 @@ func _on_player_area_enter( area ):
 		can_use_stairs = true
 		current_stairs = area
 		stairs_move_target = area.get_stairs_target(get_pos())
+	elif area.is_in_group("book") and current_target == TARGETS["book"]:
+		print("can collect")
 
 func _on_player_area_exit( area ):
 	can_use_stairs = false

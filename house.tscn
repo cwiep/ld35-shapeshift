@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://images/house.png" type="Texture" id=1]
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://stairs.gd" type="Script" id=3]
+[ext_resource path="res://images/book.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -14,9 +15,14 @@ extents = Vector2( 23.8997, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="Node2D" type="Node2D"]
 
-__meta__ = { "__editor_plugin_screen__":"Script" }
+__meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="house" type="Sprite" parent="."]
 
@@ -48,7 +54,7 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
-[node name="wall" type="StaticBody2D" parent="."]
+[node name="wall" type="Area2D" parent="."]
 
 transform/pos = Vector2( -501.944, 256.584 )
 transform/scale = Vector2( 1, 7.03987 )
@@ -65,12 +71,11 @@ shapes/2/trigger = false
 shapes/3/shape = SubResource( 1 )
 shapes/3/transform = Matrix32( 0.501643, -0, 0, 1.85315, 205.299, -48.74 )
 shapes/3/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
 
@@ -108,28 +113,85 @@ _update_shape_index = 3
 
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 2.92305, -0, 0, 13.7458, 316.507, 320.97 )
+shapes/0/transform = Matrix32( 2.92305, -0, 0, 13.7458, 315.908, 320.97 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="pos_down" type="Position2D" parent="stairs"]
 
-transform/pos = Vector2( 314.973, 465.69 )
+transform/pos = Vector2( 316.769, 413.001 )
 
 [node name="pos_up" type="Position2D" parent="stairs"]
 
-transform/pos = Vector2( 314.07, 230.138 )
+transform/pos = Vector2( 315.866, 193.615 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stairs"]
 
-transform/pos = Vector2( 316.507, 320.97 )
+transform/pos = Vector2( 315.908, 320.97 )
 transform/scale = Vector2( 2.92305, 13.7458 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="stairs1" type="Area2D" parent="." groups=[ "stairs" ]]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 2.92305, -0, 0, 13.7458, 109.835, 106.175 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 3 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="pos_down" type="Position2D" parent="stairs1"]
+
+transform/pos = Vector2( 109.506, 190.925 )
+
+[node name="pos_up" type="Position2D" parent="stairs1"]
+
+transform/pos = Vector2( 110.105, -28.7658 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stairs1"]
+
+transform/pos = Vector2( 109.835, 106.175 )
+transform/scale = Vector2( 2.92305, 13.7458 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="target_book" type="Area2D" parent="." groups=[ "book" ]]
+
+transform/pos = Vector2( -414.524, 191.656 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 4.81964, -0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = { "_edit_group_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="target_book"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="target_book"]
+
+texture = ExtResource( 4 )
 
 
