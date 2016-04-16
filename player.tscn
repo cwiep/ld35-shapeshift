@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://images/guest_m.png" type="Texture" id=2]
+[ext_resource path="res://images/prof_m.png" type="Texture" id=3]
+[ext_resource path="res://images/guest_w.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -22,10 +24,26 @@ angular_damp = 1.0
 script/script = ExtResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"2D" }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="sprite_guest_m" type="Sprite" parent="."]
 
 transform/scale = Vector2( 6.96323, 6.96323 )
 texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+
+[node name="sprite_prof_m" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/scale = Vector2( 6.96323, 6.96323 )
+texture = ExtResource( 3 )
+vframes = 4
+hframes = 4
+
+[node name="sprite_guest_w" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/scale = Vector2( 6.96323, 6.96323 )
+texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
 
@@ -55,6 +73,14 @@ type_mask = 16
 transform/pos = Vector2( -1.76053, 9.6828 )
 enabled = true
 cast_to = Vector2( -50, 0 )
+layer_mask = 4
+type_mask = 16
+
+[node name="person_look_right" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( -1.76053, 9.6828 )
+enabled = true
+cast_to = Vector2( 50, 0 )
 layer_mask = 4
 type_mask = 16
 

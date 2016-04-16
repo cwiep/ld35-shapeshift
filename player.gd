@@ -19,7 +19,7 @@ var is_attacking
 func _ready():
 	set_process_input(true)
 	set_fixed_process(true)
-	player_image = get_node("Sprite")
+	player_image = get_node("sprite_guest_m")
 	can_use_stairs = false
 	is_using_stairs = false
 	can_collect_target = false
@@ -28,10 +28,40 @@ func _ready():
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept") and !event.is_echo() and !is_attacking:
+		var colliding_ray = null
 		if get_node("person_look_left").is_colliding():
-			if get_node("person_look_left").get_collider().is_in_group("prof"):
+			colliding_ray = get_node("person_look_left")
+		elif get_node("person_look_right").is_colliding():
+			colliding_ray = get_node("person_look_right")
+		if colliding_ray != null:
+			var collider = colliding_ray.get_collider()
+			if collider.is_in_group("prof"):
 				is_attacking = true
-				get_node("person_look_left").get_collider().kill()
+				collider.kill()
+				# change player sprite to killed type
+				var flip = player_image.is_flipped_h()
+				player_image.hide()
+				player_image = get_node("sprite_prof_m")
+				player_image.show()
+				player_image.set_flip_h(flip)
+			elif collider.is_in_group("guest_w"):
+				is_attacking = true
+				collider.kill()
+				# change player sprite to killed type
+				var flip = player_image.is_flipped_h()
+				player_image.hide()
+				player_image = get_node("sprite_guest_w")
+				player_image.show()
+				player_image.set_flip_h(flip)
+			elif collider.is_in_group("guest_m"):
+				is_attacking = true
+				collider.kill()
+				# change player sprite to killed type
+				var flip = player_image.is_flipped_h()
+				player_image.hide()
+				player_image = get_node("sprite_guest_m")
+				player_image.show()
+				player_image.set_flip_h(flip)
 			
 func _fixed_process(delta):
 	# check for collectible objectives
@@ -54,8 +84,9 @@ func _fixed_process(delta):
 			set_pos(stairs_move_target)
 			is_using_stairs = false
 			stairs_move_target = current_stairs.get_stairs_target(get_pos())
-		# todo: play normal walk animation
+		player_image.set_frame(int(animation_timer / 0.2))
 	elif is_attacking:
+		# attack is a still frame that lasts one animation cycle and blocks all movement
 		player_image.set_frame(11)
 	else:
 		# otherwise allow normal motion
