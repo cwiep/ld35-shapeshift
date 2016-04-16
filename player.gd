@@ -56,7 +56,7 @@ func _fixed_process(delta):
 			stairs_move_target = current_stairs.get_stairs_target(get_pos())
 		# todo: play normal walk animation
 	elif is_attacking:
-		print("is attacking")
+		player_image.set_frame(11)
 	else:
 		# otherwise allow normal motion
 		if Input.is_action_pressed("ui_left") and !get_node("look_left").is_colliding():

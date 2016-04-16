@@ -26,6 +26,7 @@ __meta__ = { "__editor_plugin_screen__":"2D" }
 
 transform/scale = Vector2( 6.96323, 6.96323 )
 texture = ExtResource( 2 )
+vframes = 4
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
