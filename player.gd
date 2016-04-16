@@ -22,10 +22,14 @@ func _ready():
 	can_collect_target = false
 	
 func _fixed_process(delta):
+	# check for collectible objectives
 	if can_collect_target:
 		get_node("../hud/target").set_text("collect")
 	else:
 		get_node("../hud/target").set_text("")
+		
+	if Input.is_action_pressed("ui_accept"):
+		get_node("../guests/professor").kill()
 		
 	if is_using_stairs:
 		# move player toward target

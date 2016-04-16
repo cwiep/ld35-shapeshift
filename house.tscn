@@ -233,9 +233,7 @@ texture = ExtResource( 5 )
 
 [node name="guests" type="Node2D" parent="."]
 
-__meta__ = { "_editor_collapsed":true }
-
-[node name="professor" type="Area2D" parent="guests"]
+[node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
 transform/pos = Vector2( -42.2345, 418.63 )
 input/pickable = true
@@ -247,17 +245,19 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 6 )
-__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+__meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="guests/professor"]
 
 transform/scale = Vector2( 6.34723, 6.34723 )
 texture = ExtResource( 7 )
+vframes = 4
 hframes = 4
-frame = 2
+region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="guests/professor"]
 
+visibility/visible = false
 transform/scale = Vector2( 1.22312, 4.73326 )
 shape = SubResource( 4 )
 trigger = false
@@ -265,6 +265,7 @@ _update_shape_index = 0
 
 [node name="look_left" type="RayCast2D" parent="guests/professor"]
 
+visibility/visible = false
 enabled = true
 cast_to = Vector2( -30, 0 )
 layer_mask = 2
@@ -272,6 +273,7 @@ type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="guests/professor"]
 
+visibility/visible = false
 enabled = true
 cast_to = Vector2( 30, 0 )
 layer_mask = 2

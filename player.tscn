@@ -78,7 +78,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"2D", "_edit_group_":true }
+__meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -120,6 +120,14 @@ enabled = true
 cast_to = Vector2( 30, 0 )
 layer_mask = 2
 type_mask = 16
+
+[node name="person_look_left" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( -1.76053, 9.6828 )
+enabled = false
+cast_to = Vector2( -50, 0 )
+layer_mask = 1
+type_mask = 15
 
 [connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
 
