@@ -19,6 +19,7 @@ var target_type
 var is_attacking
 const ray_left = Vector2(-30, 0)
 const ray_right = Vector2(30, 0)
+var current_shape
 
 var global_node
 
@@ -26,6 +27,7 @@ func _ready():
 	set_process_input(true)
 	set_fixed_process(true)
 	player_image = get_node("sprite_guest_m")
+	current_shape = "guest_m"
 	can_use_stairs = false
 	is_using_stairs = false
 	can_collect_target = false
@@ -54,6 +56,7 @@ func _input(event):
 				player_image = get_node("sprite_prof_m")
 				player_image.show()
 				player_image.set_flip_h(flip)
+				current_shape = "prof_m"
 			elif collider.is_in_group("guest_w"):
 				is_attacking = true
 				collider.kill()
@@ -64,6 +67,7 @@ func _input(event):
 				player_image = get_node("sprite_guest_w")
 				player_image.show()
 				player_image.set_flip_h(flip)
+				current_shape = "guest_w"
 			elif collider.is_in_group("guest_m"):
 				is_attacking = true
 				collider.kill()
@@ -74,6 +78,7 @@ func _input(event):
 				player_image = get_node("sprite_guest_m")
 				player_image.show()
 				player_image.set_flip_h(flip)
+				current_shape = "guest_m"
 	elif event.is_action_pressed("ui_collect") and !event.is_echo():
 		pass
 		
@@ -98,22 +103,40 @@ func _fixed_process(delta):
 		player_image.set_frame(11)
 	else:
 		# otherwise allow normal motion
-		if Input.is_action_pressed("ui_left") and !get_node("look_left").is_colliding():
-			translate(Vector2(-400 * delta, 0))
+		if Input.is_action_pressed("ui_left"):
+			var move_allowed = false
+			if get_node("look_left").is_colliding():
+				var collider = get_node("look_left").get_collider()
+				if collider.has_method("is_allowed"):
+					if collider.is_allowed(current_shape):
+						move_allowed = true
+			else:
+				move_allowed = true
+				
+			if move_allowed:
+				translate(Vector2(-400 * delta, 0))
+				# animate player walking
+				player_image.set_frame(int(animation_timer / 0.2))
 			
-			# animate player walking
 			player_image.set_flip_h(false)
-			player_image.set_frame(int(animation_timer / 0.2))
-			
 			# set person detection ray accordingly
 			get_node("person_look").set_cast_to(ray_left)
-		elif Input.is_action_pressed("ui_right") and !get_node("look_right").is_colliding():
-			translate(Vector2(400 * delta, 0))
+		elif Input.is_action_pressed("ui_right"):
+			var move_allowed = false
+			if get_node("look_right").is_colliding():
+				var collider = get_node("look_right").get_collider()
+				if collider.has_method("is_allowed"):
+					if collider.is_allowed(current_shape):
+						move_allowed = true
+			else:
+				move_allowed = true
+				
+			if move_allowed:
+				translate(Vector2(400 * delta, 0))
+				# animate player walking
+				player_image.set_frame(int(animation_timer / 0.2))
 
-			# animate player walking
 			player_image.set_flip_h(true)
-			player_image.set_frame(int(animation_timer / 0.2))
-
 			# set person detection ray accordingly
 			get_node("person_look").set_cast_to(ray_right)
 		else:

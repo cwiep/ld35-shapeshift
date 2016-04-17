@@ -66,14 +66,14 @@ _update_shape_index = 0
 
 enabled = true
 cast_to = Vector2( -30, 0 )
-layer_mask = 2
+layer_mask = 32770
 type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="."]
 
 enabled = true
 cast_to = Vector2( 30, 0 )
-layer_mask = 2
+layer_mask = 32770
 type_mask = 16
 
 [node name="person_look" type="RayCast2D" parent="."]
