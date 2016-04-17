@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://images/background_floor.png" type="Texture" id=1]
 [ext_resource path="res://images/house.png" type="Texture" id=2]
@@ -8,12 +8,15 @@
 [ext_resource path="res://images/book.png" type="Texture" id=6]
 [ext_resource path="res://images/computer.png" type="Texture" id=7]
 [ext_resource path="res://images/toiletpaper.png" type="Texture" id=8]
-[ext_resource path="res://prof.gd" type="Script" id=9]
-[ext_resource path="res://images/redhead_m.png" type="Texture" id=10]
-[ext_resource path="res://images/guest_w.png" type="Texture" id=11]
-[ext_resource path="res://images/guest_m.png" type="Texture" id=12]
-[ext_resource path="res://hud.gd" type="Script" id=13]
-[ext_resource path="res://images/communicator.png" type="Texture" id=14]
+[ext_resource path="res://images/beer.png" type="Texture" id=9]
+[ext_resource path="res://images/hotdog.png" type="Texture" id=10]
+[ext_resource path="res://prof.gd" type="Script" id=11]
+[ext_resource path="res://images/aah.png" type="Texture" id=12]
+[ext_resource path="res://images/redhead_m.png" type="Texture" id=13]
+[ext_resource path="res://images/guest_w.png" type="Texture" id=14]
+[ext_resource path="res://images/guest_m.png" type="Texture" id=15]
+[ext_resource path="res://hud.gd" type="Script" id=16]
+[ext_resource path="res://images/communicator.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -252,8 +255,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="targets" type="Node2D" parent="."]
 
-__meta__ = { "_editor_collapsed":true }
-
 [node name="target_book" type="Area2D" parent="targets" groups=[ "book" ]]
 
 transform/pos = Vector2( -199.038, 267.922 )
@@ -335,7 +336,63 @@ _update_shape_index = 0
 
 texture = ExtResource( 8 )
 
+[node name="target_beer" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
+
+transform/pos = Vector2( 827.737, 256.443 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 4.81964, 0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 5 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "beer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_beer"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="targets/target_beer"]
+
+texture = ExtResource( 9 )
+
+[node name="target_hotdog" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
+
+transform/pos = Vector2( 957.737, 246.443 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 4.81964, 0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 5 )
+__meta__ = { "_edit_group_":true }
+target_type = "hotdog"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_hotdog"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="targets/target_hotdog"]
+
+texture = ExtResource( 10 )
+
 [node name="guests" type="Node2D" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
 
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
@@ -349,8 +406,8 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 9 )
-__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+script/script = ExtResource( 11 )
+__meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="guests/professor"]
 
@@ -389,6 +446,12 @@ cast_to = Vector2( -100, 0 )
 layer_mask = 36
 type_mask = 16
 
+[node name="aah" type="Sprite" parent="guests/professor"]
+
+visibility/visible = false
+transform/pos = Vector2( 3, -65 )
+texture = ExtResource( 12 )
+
 [node name="redhead" type="Area2D" parent="guests" groups=[ "redhead" ]]
 
 transform/pos = Vector2( 499.989, 266.739 )
@@ -401,13 +464,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 9 )
+script/script = ExtResource( 11 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/redhead"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 13 )
 hframes = 4
 frame = 2
 
@@ -440,9 +503,15 @@ cast_to = Vector2( -100, 0 )
 layer_mask = 36
 type_mask = 16
 
+[node name="aah" type="Sprite" parent="guests/redhead"]
+
+visibility/visible = false
+transform/pos = Vector2( 3.04935, -63.8917 )
+texture = ExtResource( 12 )
+
 [node name="reddress" type="Area2D" parent="guests" groups=[ "guest_w" ]]
 
-transform/pos = Vector2( 518.217, 433.651 )
+transform/pos = Vector2( 517.482, 433.651 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
@@ -452,13 +521,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 9 )
+script/script = ExtResource( 11 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/reddress"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 14 )
 vframes = 4
 hframes = 4
 
@@ -490,6 +559,12 @@ cast_to = Vector2( -100, 0 )
 layer_mask = 36
 type_mask = 16
 
+[node name="aah" type="Sprite" parent="guests/reddress"]
+
+visibility/visible = false
+transform/pos = Vector2( 2.82098, -66.8037 )
+texture = ExtResource( 12 )
+
 [node name="guest_m" type="Area2D" parent="guests" groups=[ "guest_m" ]]
 
 transform/pos = Vector2( 911.865, 267.489 )
@@ -502,13 +577,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 9 )
+script/script = ExtResource( 11 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/guest_m"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 12 )
+texture = ExtResource( 15 )
 vframes = 4
 hframes = 4
 
@@ -541,55 +616,11 @@ cast_to = Vector2( -100, 0 )
 layer_mask = 36
 type_mask = 16
 
-[node name="reddress1" type="Area2D" parent="guests" groups=[ "guest_w" ]]
+[node name="aah" type="Sprite" parent="guests/guest_m"]
 
-transform/pos = Vector2( 592.905, 433.651 )
-input/pickable = true
-shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision/layers = 5
-script/script = ExtResource( 9 )
-__meta__ = { "_edit_group_":true }
-
-[node name="Sprite" type="Sprite" parent="guests/reddress1"]
-
-transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 11 )
-vframes = 4
-hframes = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="guests/reddress1"]
-
-transform/scale = Vector2( 1.22312, 4.00099 )
-shape = SubResource( 4 )
-trigger = false
-_update_shape_index = 0
-
-[node name="look_left" type="RayCast2D" parent="guests/reddress1"]
-
-enabled = true
-cast_to = Vector2( -30, 0 )
-layer_mask = 10
-type_mask = 16
-
-[node name="look_right" type="RayCast2D" parent="guests/reddress1"]
-
-enabled = true
-cast_to = Vector2( 30, 0 )
-layer_mask = 10
-type_mask = 16
-
-[node name="panic_ray" type="RayCast2D" parent="guests/reddress1"]
-
-enabled = true
-cast_to = Vector2( -100, 0 )
-layer_mask = 36
-type_mask = 16
+visibility/visible = false
+transform/pos = Vector2( 1.43811, -61.6414 )
+texture = ExtResource( 12 )
 
 [node name="hud" type="CanvasLayer" parent="."]
 
@@ -597,14 +628,14 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-script/script = ExtResource( 13 )
+script/script = ExtResource( 16 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="hud"]
 
 transform/pos = Vector2( 660.471, 59.7516 )
 transform/scale = Vector2( 1.55145, 1.55145 )
-texture = ExtResource( 14 )
+texture = ExtResource( 17 )
 
 [node name="Label" type="Label" parent="hud"]
 

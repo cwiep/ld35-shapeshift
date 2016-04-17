@@ -75,6 +75,7 @@ func _fixed_process(delta):
 		if !get_node("look_left").is_colliding():
 			# move
 			translate(Vector2(-100 * delta, 0))
+			sprite_node.set_flip_h(false)
 	elif current_state == "dead":
 		sprite_node.set_frame(10)
 	else:
@@ -89,6 +90,7 @@ func _check_panic_ray():
 			if collider.causes_panic():
 				current_state = "panic"
 				roll_states = false
+				get_node("aah").show()
 
 func _roll_new_state():
 	state_timer = rand_range(1.5, 4.0)
