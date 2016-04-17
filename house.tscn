@@ -59,9 +59,8 @@ texture = ExtResource( 2 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 209.289, 432.895 )
+transform/pos = Vector2( 210.024, 432.895 )
 z/z = 1
-linear_damp = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -249,7 +248,7 @@ _update_shape_index = 0
 
 texture = ExtResource( 6 )
 
-[node name="target_toiletpaper" type="Area2D" parent="." groups=[ "computer" ]]
+[node name="target_toiletpaper" type="Area2D" parent="." groups=[ "toiletpaper" ]]
 
 transform/pos = Vector2( -188.263, 421.443 )
 transform/scale = Vector2( 0.618968, 0.618968 )

@@ -12,9 +12,15 @@ var current_stairs
 
 # collecting targets
 var can_collect_target
+var target_in_sight
+var target_type
 
 # shapeshifting
 var is_attacking
+const ray_left = Vector2(-30, 0)
+const ray_right = Vector2(30, 0)
+
+var global_node
 
 func _ready():
 	set_process_input(true)
@@ -23,16 +29,19 @@ func _ready():
 	can_use_stairs = false
 	is_using_stairs = false
 	can_collect_target = false
+	target_in_sight = null
 	is_attacking = false
 	animation_timer = 0
+	global_node = get_node("/root/global")
 	
 func _input(event):
-	if event.is_action_pressed("ui_accept") and !event.is_echo() and !is_attacking:
+	if is_attacking:
+		# block all moves when attacking
+		return
+	if event.is_action_pressed("ui_attack") and !event.is_echo():
 		var colliding_ray = null
-		if get_node("person_look_left").is_colliding():
-			colliding_ray = get_node("person_look_left")
-		elif get_node("person_look_right").is_colliding():
-			colliding_ray = get_node("person_look_right")
+		if get_node("person_look").is_colliding():
+			colliding_ray = get_node("person_look")
 		if colliding_ray != null:
 			var collider = colliding_ray.get_collider()
 			if collider.is_in_group("prof"):
@@ -62,7 +71,9 @@ func _input(event):
 				player_image = get_node("sprite_guest_m")
 				player_image.show()
 				player_image.set_flip_h(flip)
-			
+	elif event.is_action_pressed("ui_collect") and !event.is_echo():
+		pass
+		
 func _fixed_process(delta):
 	# check for collectible objectives
 	if can_collect_target:
@@ -96,7 +107,9 @@ func _fixed_process(delta):
 			# animate player walking
 			player_image.set_flip_h(false)
 			player_image.set_frame(int(animation_timer / 0.2))
-
+			
+			# set person detection ray accordingly
+			get_node("person_look").set_cast_to(ray_left)
 		elif Input.is_action_pressed("ui_right") and !get_node("look_right").is_colliding():
 			translate(Vector2(400 * delta, 0))
 
@@ -104,26 +117,45 @@ func _fixed_process(delta):
 			player_image.set_flip_h(true)
 			player_image.set_frame(int(animation_timer / 0.2))
 
+			# set person detection ray accordingly
+			get_node("person_look").set_cast_to(ray_right)
 		else:
 			player_image.set_frame(0)
 		
-		if Input.is_action_pressed("ui_accept") and can_use_stairs:
-			is_using_stairs = true
+		if Input.is_action_pressed("ui_collect"):
+			# collect key uses stairs and collects items
+			if can_use_stairs:
+				is_using_stairs = true
+			elif can_collect_target:
+				global_node.set_is_collected(target_type)
+				target_in_sight.hide()
+				can_collect_target = false
+				# todo: play pling sound
 		
 func _on_player_area_enter( area ):
 	if area.is_in_group("stairs"):
 		can_use_stairs = true
 		current_stairs = area
 		stairs_move_target = area.get_stairs_target(get_pos())
-	elif area.is_in_group("book") and get_node("/root/global").current_target == get_node("/root/global").TARGETS["book"]:
+	elif area.is_in_group("book") and global_node.is_in_targets(global_node.TARGETS.book):
 		can_collect_target = true
-	elif area.is_in_group("computer") and get_node("/root/global").current_target == get_node("/root/global").TARGETS["computer"]:
+		target_in_sight = area
+		target_type = global_node.TARGETS.book
+	elif area.is_in_group("computer") and global_node.is_in_targets(global_node.TARGETS.computer):
 		can_collect_target = true
+		target_in_sight = area
+		target_type = global_node.TARGETS.computer
+	elif area.is_in_group("toiletpaper") and global_node.is_in_targets(global_node.TARGETS.toiletpaper):
+		can_collect_target = true
+		target_in_sight = area
+		target_type = global_node.TARGETS.toiletpaper
 
 func _on_player_area_exit( area ):
 	if area.is_in_group("stairs"):
 		can_use_stairs = false
-	elif area.is_in_group("book") and get_node("/root/global").current_target == get_node("/root/global").TARGETS["book"]:
+	elif area.is_in_group("book") and global_node.is_in_targets(global_node.TARGETS.book):
 		can_collect_target = false
-	elif area.is_in_group("computer") and get_node("/root/global").current_target == get_node("/root/global").TARGETS["computer"]:
+	elif area.is_in_group("computer") and global_node.is_in_targets(global_node.TARGETS.computer):
+		can_collect_target = false
+	elif area.is_in_group("toiletpaper") and global_node.is_in_targets(global_node.TARGETS.toiletpaper):
 		can_collect_target = false
