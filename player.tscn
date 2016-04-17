@@ -15,7 +15,7 @@ extents = Vector2( 10, 10 )
 transform/pos = Vector2( 77.0222, 84.5043 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1.02169, 0, 0, 5.19103, 0, 0 )
+shapes/0/transform = Matrix32( 1.02169, -0, 0, 4.06737, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -26,7 +26,7 @@ __meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="sprite_guest_m" type="Sprite" parent="."]
 
-transform/scale = Vector2( 6.96323, 6.96323 )
+transform/scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
@@ -34,7 +34,7 @@ hframes = 4
 [node name="sprite_prof_m" type="Sprite" parent="."]
 
 visibility/visible = false
-transform/scale = Vector2( 6.96323, 6.96323 )
+transform/scale = Vector2( 5, 5 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 4
@@ -42,14 +42,14 @@ hframes = 4
 [node name="sprite_guest_w" type="Sprite" parent="."]
 
 visibility/visible = false
-transform/scale = Vector2( 6.96323, 6.96323 )
+transform/scale = Vector2( 5, 5 )
 texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/scale = Vector2( 1.02169, 5.19103 )
+transform/scale = Vector2( 1.02169, 4.06737 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
