@@ -15,8 +15,8 @@ extents = Vector2( 10, 10 )
 
 [sub_resource type="SampleLibrary" id=2]
 
-samples/collect = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
 samples/hit = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/collect = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
 
 [node name="player" type="Area2D"]
 
@@ -110,8 +110,17 @@ default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
 
+[node name="collect_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
 [connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
 
 [connection signal="area_exit" from="." to="." method="_on_player_area_exit"]
+
+[connection signal="timeout" from="collect_timer" to="." method="_on_collect_timer_timeout"]
 
 

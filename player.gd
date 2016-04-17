@@ -4,6 +4,8 @@ extends Area2D
 var player_image
 var animation_timer
 
+const WALK_SPEED = 200
+
 # variables for moving up/down stairs
 var can_use_stairs
 var is_using_stairs
@@ -14,6 +16,7 @@ var current_stairs
 var can_collect_target
 var target_in_sight
 var target_type
+var is_collecting # only used with collect_timer to cause panic
 
 # shapeshifting
 var is_attacking
@@ -40,6 +43,7 @@ func _ready():
 	global_node = get_node("/root/global")
 	attack_timer = 0
 	changed_shape = false
+	is_collecting = false
 	
 func _input(event):
 	if is_attacking:
@@ -117,7 +121,7 @@ func _fixed_process(delta):
 				move_allowed = true
 				
 			if move_allowed:
-				translate(Vector2(-400 * delta, 0))
+				translate(Vector2(-WALK_SPEED * delta, 0))
 				# animate player walking
 				player_image.set_frame(int(animation_timer / 0.2))
 			
@@ -135,7 +139,7 @@ func _fixed_process(delta):
 				move_allowed = true
 				
 			if move_allowed:
-				translate(Vector2(400 * delta, 0))
+				translate(Vector2(WALK_SPEED * delta, 0))
 				# animate player walking
 				player_image.set_frame(int(animation_timer / 0.2))
 
@@ -153,6 +157,8 @@ func _fixed_process(delta):
 				global_node.set_is_collected(target_type)
 				target_in_sight.hide()
 				can_collect_target = false
+				is_collecting = true
+				get_node("collect_timer").start()
 				get_node("SamplePlayer").play("collect")
 		
 func _on_player_area_enter( area ):
@@ -175,7 +181,7 @@ func _on_player_area_exit( area ):
 			can_collect_target = false
 			
 func causes_panic():
-	return is_attacking
+	return is_attacking or is_collecting
 	
 func _set_sprite_for_type(type):
 	# hide current shape
@@ -193,3 +199,6 @@ func _set_sprite_for_type(type):
 	player_image.show()
 	# set correct direction of new shape
 	player_image.set_flip_h(flip)
+
+func _on_collect_timer_timeout():
+	is_collecting = false
