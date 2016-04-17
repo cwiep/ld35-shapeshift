@@ -222,6 +222,28 @@ shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
 
+[node name="lib_wall" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 1.60557, -0, 0, 4.13824, 111.872, 265.797 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 32769
+script/script = ExtResource( 4 )
+allowed = "prof_m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lib_wall"]
+
+transform/pos = Vector2( 111.872, 265.797 )
+transform/scale = Vector2( 1.60557, 4.13824 )
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 0
+
 [node name="stairs" type="Area2D" parent="." groups=[ "stairs" ]]
 
 input/pickable = true
