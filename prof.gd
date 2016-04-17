@@ -59,6 +59,7 @@ func _fixed_process(delta):
 		# todo: move around randomly
 	elif current_state == "dead":
 		sprite_node.set_frame(10)
+		
 	else:
 		# standing
 		sprite_node.set_frame(0)
@@ -72,3 +73,4 @@ func kill():
 	current_state = "dying"
 	# dying only has 3 frames
 	animation_timer = 0.2
+	get_node("CollisionShape2D").remove_and_skip()

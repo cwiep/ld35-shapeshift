@@ -47,6 +47,7 @@ func _input(event):
 			if collider.is_in_group("prof"):
 				is_attacking = true
 				collider.kill()
+				get_node("SamplePlayer").play("hit")
 				# change player sprite to killed type
 				var flip = player_image.is_flipped_h()
 				player_image.hide()
@@ -56,6 +57,7 @@ func _input(event):
 			elif collider.is_in_group("guest_w"):
 				is_attacking = true
 				collider.kill()
+				get_node("SamplePlayer").play("hit")
 				# change player sprite to killed type
 				var flip = player_image.is_flipped_h()
 				player_image.hide()
@@ -65,6 +67,7 @@ func _input(event):
 			elif collider.is_in_group("guest_m"):
 				is_attacking = true
 				collider.kill()
+				get_node("SamplePlayer").play("hit")
 				# change player sprite to killed type
 				var flip = player_image.is_flipped_h()
 				player_image.hide()
@@ -130,7 +133,7 @@ func _fixed_process(delta):
 				global_node.set_is_collected(target_type)
 				target_in_sight.hide()
 				can_collect_target = false
-				# todo: play pling sound
+				get_node("SamplePlayer").play("collect")
 		
 func _on_player_area_enter( area ):
 	if area.is_in_group("stairs"):
