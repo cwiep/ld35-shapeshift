@@ -77,13 +77,7 @@ func _input(event):
 	elif event.is_action_pressed("ui_collect") and !event.is_echo():
 		pass
 		
-func _fixed_process(delta):
-	# check for collectible objectives
-	if can_collect_target:
-		get_node("../hud/target").set_text("collect")
-	else:
-		get_node("../hud/target").set_text("")
-	
+func _fixed_process(delta):	
 	# update animation
 	animation_timer += delta
 	if animation_timer >= 0.8:
@@ -140,25 +134,16 @@ func _on_player_area_enter( area ):
 		can_use_stairs = true
 		current_stairs = area
 		stairs_move_target = area.get_stairs_target(get_pos())
-	elif area.is_in_group("book") and global_node.is_in_targets(global_node.TARGETS.book):
-		can_collect_target = true
-		target_in_sight = area
-		target_type = global_node.TARGETS.book
-	elif area.is_in_group("computer") and global_node.is_in_targets(global_node.TARGETS.computer):
-		can_collect_target = true
-		target_in_sight = area
-		target_type = global_node.TARGETS.computer
-	elif area.is_in_group("toiletpaper") and global_node.is_in_targets(global_node.TARGETS.toiletpaper):
-		can_collect_target = true
-		target_in_sight = area
-		target_type = global_node.TARGETS.toiletpaper
+	elif area.has_method("get_target_type"):
+		target_type = area.get_target_type()
+		if global_node.is_in_targets(target_type):
+			can_collect_target = true
+			target_in_sight = area
 
 func _on_player_area_exit( area ):
 	if area.is_in_group("stairs"):
 		can_use_stairs = false
-	elif area.is_in_group("book") and global_node.is_in_targets(global_node.TARGETS.book):
-		can_collect_target = false
-	elif area.is_in_group("computer") and global_node.is_in_targets(global_node.TARGETS.computer):
-		can_collect_target = false
-	elif area.is_in_group("toiletpaper") and global_node.is_in_targets(global_node.TARGETS.toiletpaper):
-		can_collect_target = false
+	elif area.has_method("get_target_type"):
+		target_type = area.get_target_type()
+		if global_node.is_in_targets(target_type):
+			can_collect_target = false

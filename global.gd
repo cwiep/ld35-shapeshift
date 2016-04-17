@@ -1,24 +1,24 @@
 
 extends Node
 
-const TARGETS = {
-	"book": 0,
-	"computer": 1,
-	"toiletpaper": 2
-}
+const TARGETS = [
+	"book",
+	"computer",
+	"toiletpaper"
+]
 
 var current_targets
 
 func _ready():
-	current_targets = {TARGETS.book: 1, TARGETS.computer: 1, TARGETS.toiletpaper: 1}
+	current_targets = {"book": 1, "computer": 1, "toiletpaper": 1}
 	#roll_new_target()
 
-func is_in_targets(object):
+func is_in_targets(target_string):
 	# 1 being item is in current targets and has not yet been collected
-	return current_targets[object] == 1
+	return current_targets[target_string] == 1
 
-func set_is_collected(object):
-	current_targets[object] = 0
+func set_is_collected(target_string):
+	current_targets[target_string] = 0
 
 func roll_new_target():
 	"""var new_target = current_target

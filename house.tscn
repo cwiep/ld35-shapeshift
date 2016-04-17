@@ -1,16 +1,19 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://images/background_floor.png" type="Texture" id=1]
 [ext_resource path="res://images/house.png" type="Texture" id=2]
 [ext_resource path="res://player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stairs.gd" type="Script" id=4]
-[ext_resource path="res://images/book.png" type="Texture" id=5]
-[ext_resource path="res://images/computer.png" type="Texture" id=6]
-[ext_resource path="res://images/toiletpaper.png" type="Texture" id=7]
-[ext_resource path="res://prof.gd" type="Script" id=8]
-[ext_resource path="res://images/redhead_m.png" type="Texture" id=9]
-[ext_resource path="res://images/guest_w.png" type="Texture" id=10]
-[ext_resource path="res://images/guest_m.png" type="Texture" id=11]
+[ext_resource path="res://target.gd" type="Script" id=5]
+[ext_resource path="res://images/book.png" type="Texture" id=6]
+[ext_resource path="res://images/computer.png" type="Texture" id=7]
+[ext_resource path="res://images/toiletpaper.png" type="Texture" id=8]
+[ext_resource path="res://prof.gd" type="Script" id=9]
+[ext_resource path="res://images/redhead_m.png" type="Texture" id=10]
+[ext_resource path="res://images/guest_w.png" type="Texture" id=11]
+[ext_resource path="res://images/guest_m.png" type="Texture" id=12]
+[ext_resource path="res://hud.gd" type="Script" id=13]
+[ext_resource path="res://images/communicator.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -61,7 +64,6 @@ texture = ExtResource( 2 )
 
 transform/pos = Vector2( 210.024, 432.895 )
 z/z = 1
-linear_damp = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -181,6 +183,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 4 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="pos_down" type="Position2D" parent="stairs1"]
 
@@ -199,7 +202,9 @@ trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
 
-[node name="target_book" type="Area2D" parent="." groups=[ "book" ]]
+[node name="targets" type="Node2D" parent="."]
+
+[node name="target_book" type="Area2D" parent="targets" groups=[ "book" ]]
 
 transform/pos = Vector2( -199.038, 267.922 )
 transform/scale = Vector2( 0.618968, 0.618968 )
@@ -211,20 +216,22 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+script/script = ExtResource( 5 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "book"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="target_book"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_book"]
 
 transform/scale = Vector2( 4.81964, 4.1599 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="target_book"]
+[node name="Sprite" type="Sprite" parent="targets/target_book"]
 
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
-[node name="target_computer" type="Area2D" parent="." groups=[ "computer" ]]
+[node name="target_computer" type="Area2D" parent="targets" groups=[ "computer" ]]
 
 transform/pos = Vector2( 23.0162, 96.9017 )
 transform/scale = Vector2( 0.618968, 0.618968 )
@@ -236,20 +243,22 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+script/script = ExtResource( 5 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "computer"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="target_computer"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_computer"]
 
 transform/scale = Vector2( 4.81964, 4.1599 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="target_computer"]
+[node name="Sprite" type="Sprite" parent="targets/target_computer"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
-[node name="target_toiletpaper" type="Area2D" parent="." groups=[ "toiletpaper" ]]
+[node name="target_toiletpaper" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
 
 transform/pos = Vector2( -188.263, 421.443 )
 transform/scale = Vector2( 0.618968, 0.618968 )
@@ -261,20 +270,24 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+script/script = ExtResource( 5 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "toiletpaper"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="target_toiletpaper"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_toiletpaper"]
 
 transform/scale = Vector2( 4.81964, 4.1599 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="target_toiletpaper"]
+[node name="Sprite" type="Sprite" parent="targets/target_toiletpaper"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="guests" type="Node2D" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
 
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
@@ -288,8 +301,8 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 8 )
-__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+script/script = ExtResource( 9 )
+__meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="guests/professor"]
 
@@ -331,13 +344,13 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 __meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="guests/redhead"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 4
 frame = 2
 
@@ -374,13 +387,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/reddress"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 vframes = 4
 hframes = 4
 
@@ -417,13 +430,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/guest_m"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 vframes = 4
 hframes = 4
 
@@ -454,17 +467,67 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+script/script = ExtResource( 13 )
 
-[node name="target" type="Label" parent="hud"]
+[node name="Sprite" type="Sprite" parent="hud"]
 
-margin/left = 589.0
-margin/top = 12.0
-margin/right = 629.0
-margin/bottom = 25.0
+transform/pos = Vector2( 660.471, 59.7516 )
+transform/scale = Vector2( 1.55145, 1.55145 )
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="hud"]
+
+margin/left = 638.0
+margin/top = 23.0
+margin/right = 678.0
+margin/bottom = 36.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+text = "to collect:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="target1" type="Label" parent="hud"]
+
+margin/left = 637.0
+margin/top = 36.0
+margin/right = 694.0
+margin/bottom = 49.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="target2" type="Label" parent="hud"]
+
+margin/left = 635.0
+margin/top = 49.0
+margin/right = 692.0
+margin/bottom = 62.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="target3" type="Label" parent="hud"]
+
+margin/left = 634.0
+margin/top = 62.0
+margin/right = 691.0
+margin/bottom = 75.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
