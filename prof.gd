@@ -89,6 +89,7 @@ func _check_panic_ray():
 		if collider.has_method("causes_panic"):
 			if collider.causes_panic():
 				current_state = "panic"
+				Globals.set("gameover", true)
 				roll_states = false
 				get_node("aah").show()
 

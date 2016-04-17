@@ -71,8 +71,8 @@ func _input(event):
 				collider.kill()
 				get_node("SamplePlayer").play("hit")
 			
-	elif event.is_action_pressed("ui_collect") and !event.is_echo():
-		pass
+	elif event.is_action_pressed("ui_quit") and !event.is_echo():
+		get_tree().change_scene("res://menu.tscn")
 		
 func _fixed_process(delta):	
 	# update animation

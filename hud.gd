@@ -7,14 +7,23 @@ var global_node
 # assigns "target" -> "label_index"
 var targets_map
 
+var finished
+var fadeout_timer
+var gameover
+
 func _ready():
+	Globals.set("gameover", false)
 	set_fixed_process(true)
 	target_labels = []
 	target_labels.append(get_node("target1"))
 	target_labels.append(get_node("target2"))
 	target_labels.append(get_node("target3"))
 	global_node = get_node("/root/global")
+	global_node.roll_new_targets()
 	_setup_targets_map()
+	fadeout_timer = 0
+	finished = false
+	gameover = false
 
 func _setup_targets_map():
 	targets_map = {}
@@ -28,6 +37,24 @@ func _setup_targets_map():
 			break
 
 func _fixed_process(delta):
+	if Globals.get("gameover") and !gameover:
+		gameover = true
+		_prepare_fadeout()
+	
+	if !finished:
+		if global_node.all_targets_collected():
+			get_node("finished").show()
+			finished = true
+			_prepare_fadeout()
+	
+	if finished or gameover:
+		fadeout_timer -= delta
+		get_node("..").set_opacity(fadeout_timer / 3.0)
+		if gameover:
+			get_node("gameover").set_opacity(1 - fadeout_timer / 3.0)
+		if fadeout_timer <= 0:
+			get_tree().change_scene("res://house.tscn")
+		
 	var current_targets = global_node.current_targets
 	# this is very dirty, but we know that there are only three targets
 	for target in targets_map.keys():
@@ -35,3 +62,8 @@ func _fixed_process(delta):
 			target_labels[targets_map[target]].set_text(target)
 		elif targets_map.has(target):
 			target_labels[targets_map[target]].set_text("")
+
+func _prepare_fadeout():
+	fadeout_timer = 3.0
+	get_node("../player").set_fixed_process(false)
+	get_node("../player").set_process_input(false)

@@ -16,5 +16,7 @@ func _input(event):
 			get_tree().change_scene("res://house.tscn")
 	elif event.is_action_released("ui_left") and !event.is_echo():
 		get_node("Sprite").set_frame(0)
+	elif event.is_action_pressed("ui_quit") and !event.is_echo():
+		get_tree().quit()
 
 
