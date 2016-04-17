@@ -67,6 +67,7 @@ texture = ExtResource( 1 )
 transform/pos = Vector2( 376.024, 223.526 )
 transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+modulate = Color( 0.753906, 0.753906, 0.753906, 1 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 
@@ -160,7 +161,7 @@ shapes/1/shape = SubResource( 6 )
 shapes/1/transform = Matrix32( 1.35811, -0, 0, 4.60567, 418.585, 260.675 )
 shapes/1/trigger = false
 shapes/2/shape = SubResource( 6 )
-shapes/2/transform = Matrix32( 1.35811, -0, 0, 4.76687, 114.426, 425.029 )
+shapes/2/transform = Matrix32( 1.35811, -0, 0, 4.76687, 19.1291, 425.843 )
 shapes/2/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -187,7 +188,7 @@ _update_shape_index = 1
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="guest_wall"]
 
-transform/pos = Vector2( 114.426, 425.029 )
+transform/pos = Vector2( 19.1291, 425.843 )
 transform/scale = Vector2( 1.35811, 4.76687 )
 shape = SubResource( 6 )
 trigger = false
@@ -311,7 +312,7 @@ texture = ExtResource( 7 )
 
 [node name="target_toiletpaper" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
 
-transform/pos = Vector2( -188.263, 421.443 )
+transform/pos = Vector2( -131.247, 423.887 )
 transform/scale = Vector2( 0.618968, 0.618968 )
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
