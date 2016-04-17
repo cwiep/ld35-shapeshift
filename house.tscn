@@ -449,8 +449,6 @@ texture = ExtResource( 11 )
 
 [node name="guests" type="Node2D" parent="."]
 
-__meta__ = { "_editor_collapsed":true }
-
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
 transform/pos = Vector2( 551.038, 267.848 )
@@ -464,7 +462,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
 script/script = ExtResource( 12 )
-__meta__ = { "_edit_group_":true }
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/professor"]
 
@@ -511,7 +509,7 @@ texture = ExtResource( 13 )
 
 [node name="redhead" type="Area2D" parent="guests" groups=[ "redhead" ]]
 
-transform/pos = Vector2( 499.989, 266.739 )
+transform/pos = Vector2( 860.1, 432.944 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.03613, 0, 0 )
@@ -522,12 +520,13 @@ linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
 script/script = ExtResource( 12 )
-__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+__meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="guests/redhead"]
 
 transform/scale = Vector2( 5, 5 )
 texture = ExtResource( 14 )
+vframes = 4
 hframes = 4
 frame = 2
 
@@ -679,6 +678,175 @@ visibility/visible = false
 transform/pos = Vector2( 1.43811, -61.6414 )
 texture = ExtResource( 13 )
 
+[node name="reddress1" type="Area2D" parent="guests" groups=[ "guest_w" ]]
+
+transform/pos = Vector2( -81.9645, 433.651 )
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 5
+script/script = ExtResource( 12 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+
+[node name="Sprite" type="Sprite" parent="guests/reddress1"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 15 )
+vframes = 4
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guests/reddress1"]
+
+transform/scale = Vector2( 1.22312, 4.00099 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="look_left" type="RayCast2D" parent="guests/reddress1"]
+
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="look_right" type="RayCast2D" parent="guests/reddress1"]
+
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/reddress1"]
+
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
+type_mask = 16
+
+[node name="aah" type="Sprite" parent="guests/reddress1"]
+
+visibility/visible = false
+transform/pos = Vector2( 2.82098, -66.8037 )
+texture = ExtResource( 13 )
+
+[node name="reddress2" type="Area2D" parent="guests" groups=[ "guest_w" ]]
+
+transform/pos = Vector2( 741.305, 267.446 )
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 5
+script/script = ExtResource( 12 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+
+[node name="Sprite" type="Sprite" parent="guests/reddress2"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 15 )
+vframes = 4
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guests/reddress2"]
+
+transform/scale = Vector2( 1.22312, 4.00099 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="look_left" type="RayCast2D" parent="guests/reddress2"]
+
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="look_right" type="RayCast2D" parent="guests/reddress2"]
+
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/reddress2"]
+
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
+type_mask = 16
+
+[node name="aah" type="Sprite" parent="guests/reddress2"]
+
+visibility/visible = false
+transform/pos = Vector2( 2.82098, -66.8037 )
+texture = ExtResource( 13 )
+
+[node name="guest_m1" type="Area2D" parent="guests" groups=[ "guest_m" ]]
+
+transform/pos = Vector2( 775.577, 433.694 )
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.01021, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 5
+script/script = ExtResource( 12 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+
+[node name="Sprite" type="Sprite" parent="guests/guest_m1"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 16 )
+vframes = 4
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guests/guest_m1"]
+
+transform/scale = Vector2( 1.22312, 4.01021 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="look_left" type="RayCast2D" parent="guests/guest_m1"]
+
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="look_right" type="RayCast2D" parent="guests/guest_m1"]
+
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/guest_m1"]
+
+transform/pos = Vector2( 3.35223, 6.16226 )
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
+type_mask = 16
+
+[node name="aah" type="Sprite" parent="guests/guest_m1"]
+
+visibility/visible = false
+transform/pos = Vector2( 1.43811, -61.6414 )
+texture = ExtResource( 13 )
+
 [node name="hud" type="CanvasLayer" parent="."]
 
 layer = 1
@@ -686,6 +854,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 17 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="hud"]
 

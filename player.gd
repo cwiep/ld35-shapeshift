@@ -64,6 +64,10 @@ func _input(event):
 				is_attacking = true
 				# change player sprite to killed type
 				current_shape = "guest_m"
+			elif collider.is_in_group("redhead"):
+				is_attacking = true
+				# change player sprite to killed type
+				current_shape = "redhead"
 			
 			if is_attacking:
 				attack_timer = 0
@@ -184,6 +188,8 @@ func _set_sprite_for_type(type):
 		player_image = get_node("sprite_guest_w")
 	if type == "guest_m":
 		player_image = get_node("sprite_guest_m")
+	if type == "redhead":
+		player_image = get_node("sprite_redhead")
 	player_image.show()
 	# set correct direction of new shape
 	player_image.set_flip_h(flip)

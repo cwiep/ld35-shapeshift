@@ -95,6 +95,7 @@ func _check_panic_ray():
 
 func _roll_new_state():
 	state_timer = rand_range(1.5, 4.0)
+	randomize()
 	current_state = STATE[randi() % NUM_NORMAL_STATES]
 
 func kill():
