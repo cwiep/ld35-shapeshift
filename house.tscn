@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://images/background_floor.png" type="Texture" id=1]
 [ext_resource path="res://images/house.png" type="Texture" id=2]
@@ -19,6 +19,11 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 23.8997, 10 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -142,6 +147,49 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 3
 
+[node name="guest_wall" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1.35811, -0, 0, 4.60567, 115.025, 259.478 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 6 )
+shapes/1/transform = Matrix32( 1.35811, -0, 0, 4.60567, 418.585, 260.675 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 6 )
+shapes/2/transform = Matrix32( 1.35811, -0, 0, 4.76687, 114.426, 425.029 )
+shapes/2/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 8
+__meta__ = { "_editor_collapsed":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guest_wall"]
+
+transform/pos = Vector2( 115.025, 259.478 )
+transform/scale = Vector2( 1.35811, 4.60567 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="guest_wall"]
+
+transform/pos = Vector2( 418.585, 260.675 )
+transform/scale = Vector2( 1.35811, 4.60567 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 1
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="guest_wall"]
+
+transform/pos = Vector2( 114.426, 425.029 )
+transform/scale = Vector2( 1.35811, 4.76687 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 2
+
 [node name="stairs" type="Area2D" parent="." groups=[ "stairs" ]]
 
 input/pickable = true
@@ -203,6 +251,8 @@ _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
 
 [node name="targets" type="Node2D" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
 
 [node name="target_book" type="Area2D" parent="targets" groups=[ "book" ]]
 
@@ -287,11 +337,9 @@ texture = ExtResource( 8 )
 
 [node name="guests" type="Node2D" parent="."]
 
-__meta__ = { "_editor_collapsed":true }
-
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
-transform/pos = Vector2( -57.2572, 433.454 )
+transform/pos = Vector2( 551.038, 267.848 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 3.9928, 0, 0 )
@@ -302,7 +350,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
 script/script = ExtResource( 9 )
-__meta__ = { "_edit_group_":true }
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/professor"]
 
@@ -323,19 +371,27 @@ _update_shape_index = 0
 
 enabled = true
 cast_to = Vector2( -30, 0 )
-layer_mask = 2
+layer_mask = 10
 type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="guests/professor"]
 
 enabled = true
 cast_to = Vector2( 30, 0 )
-layer_mask = 2
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/professor"]
+
+transform/pos = Vector2( 2.17902, -0.19632 )
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
 type_mask = 16
 
 [node name="redhead" type="Area2D" parent="guests" groups=[ "redhead" ]]
 
-transform/pos = Vector2( 650.272, 267.338 )
+transform/pos = Vector2( 499.989, 266.739 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.03613, 0, 0 )
@@ -344,8 +400,9 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 5
 script/script = ExtResource( 9 )
-__meta__ = { "_edit_group_":true }
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/redhead"]
 
@@ -365,19 +422,27 @@ _update_shape_index = 0
 
 enabled = true
 cast_to = Vector2( -30, 0 )
-layer_mask = 2
+layer_mask = 10
 type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="guests/redhead"]
 
 enabled = true
 cast_to = Vector2( 30, 0 )
-layer_mask = 2
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/redhead"]
+
+transform/pos = Vector2( 1.22836, 3.91199 )
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
 type_mask = 16
 
 [node name="reddress" type="Area2D" parent="guests" groups=[ "guest_w" ]]
 
-transform/pos = Vector2( 769.687, 433.25 )
+transform/pos = Vector2( 518.217, 433.651 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
@@ -408,14 +473,21 @@ _update_shape_index = 0
 
 enabled = true
 cast_to = Vector2( -30, 0 )
-layer_mask = 2
+layer_mask = 10
 type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="guests/reddress"]
 
 enabled = true
 cast_to = Vector2( 30, 0 )
-layer_mask = 2
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/reddress"]
+
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
 type_mask = 16
 
 [node name="guest_m" type="Area2D" parent="guests" groups=[ "guest_m" ]]
@@ -451,14 +523,72 @@ _update_shape_index = 0
 
 enabled = true
 cast_to = Vector2( -30, 0 )
-layer_mask = 2
+layer_mask = 10
 type_mask = 16
 
 [node name="look_right" type="RayCast2D" parent="guests/guest_m"]
 
 enabled = true
 cast_to = Vector2( 30, 0 )
-layer_mask = 2
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/guest_m"]
+
+transform/pos = Vector2( 3.35223, 6.16226 )
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
+type_mask = 16
+
+[node name="reddress1" type="Area2D" parent="guests" groups=[ "guest_w" ]]
+
+transform/pos = Vector2( 592.905, 433.651 )
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 5
+script/script = ExtResource( 9 )
+__meta__ = { "_edit_group_":true }
+
+[node name="Sprite" type="Sprite" parent="guests/reddress1"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 11 )
+vframes = 4
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guests/reddress1"]
+
+transform/scale = Vector2( 1.22312, 4.00099 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="look_left" type="RayCast2D" parent="guests/reddress1"]
+
+enabled = true
+cast_to = Vector2( -30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="look_right" type="RayCast2D" parent="guests/reddress1"]
+
+enabled = true
+cast_to = Vector2( 30, 0 )
+layer_mask = 10
+type_mask = 16
+
+[node name="panic_ray" type="RayCast2D" parent="guests/reddress1"]
+
+enabled = true
+cast_to = Vector2( -100, 0 )
+layer_mask = 36
 type_mask = 16
 
 [node name="hud" type="CanvasLayer" parent="."]
@@ -468,6 +598,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 13 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="hud"]
 

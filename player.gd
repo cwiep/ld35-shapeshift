@@ -147,3 +147,6 @@ func _on_player_area_exit( area ):
 		target_type = area.get_target_type()
 		if global_node.is_in_targets(target_type):
 			can_collect_target = false
+			
+func causes_panic():
+	return is_attacking
