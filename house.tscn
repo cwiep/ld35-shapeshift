@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://images/background_floor.png" type="Texture" id=1]
 [ext_resource path="res://images/house.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://images/communicator.png" type="Texture" id=18]
 [ext_resource path="res://images/checkmark.png" type="Texture" id=19]
 [ext_resource path="res://font.fnt" type="Font" id=20]
+[ext_resource path="res://touch_controls.tscn" type="PackedScene" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -471,6 +472,8 @@ _update_shape_index = 0
 texture = ExtResource( 11 )
 
 [node name="guests" type="Node2D" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
 
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
@@ -933,6 +936,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 17 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="hud"]
 
@@ -1040,5 +1044,7 @@ text = "Well done\n\nChoosing new targets..."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="touch_controls" parent="." instance=ExtResource( 21 )]
 
 

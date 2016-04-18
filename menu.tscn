@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://menu.gd" type="Script" id=1]
 [ext_resource path="res://images/menu.png" type="Texture" id=2]
 [ext_resource path="res://images/manual.png" type="Texture" id=3]
+[ext_resource path="res://touch_controls.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -16,5 +17,7 @@ script/script = ExtResource( 1 )
 
 transform/pos = Vector2( 360, 202 )
 frames = SubResource( 1 )
+
+[node name="touch_controls" parent="." instance=ExtResource( 4 )]
 
 
