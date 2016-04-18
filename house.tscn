@@ -252,7 +252,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1.60557, -0, 0, 4.13824, 71.872, 106.797 )
+shapes/0/transform = Matrix32( 1.60557, 0, 0, 4.13824, 71.872, 106.797 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -933,7 +933,6 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 17 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="hud"]
 
@@ -1006,7 +1005,7 @@ texture = ExtResource( 19 )
 
 [node name="gameover" type="Label" parent="hud"]
 
-visibility/opacity = 0.0
+visibility/visible = false
 margin/left = 263.0
 margin/top = 213.0
 margin/right = 462.0
@@ -1015,7 +1014,29 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 custom_fonts/font = ExtResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
 text = "Game Over"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="well_done" type="Label" parent="hud"]
+
+visibility/visible = false
+margin/left = 129.0
+margin/top = 178.0
+margin/right = 582.0
+margin/bottom = 259.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "Well done\n\nChoosing new targets..."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
