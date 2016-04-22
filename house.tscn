@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://images/background_floor.png" type="Texture" id=1]
 [ext_resource path="res://images/house.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://images/communicator.png" type="Texture" id=18]
 [ext_resource path="res://images/checkmark.png" type="Texture" id=19]
 [ext_resource path="res://font.fnt" type="Font" id=20]
+[ext_resource path="res://sounds/theme.ogg" type="AudioStream" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -252,7 +253,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1.60557, -0, 0, 4.13824, 71.872, 106.797 )
+shapes/0/transform = Matrix32( 1.60557, 0, 0, 4.13824, 71.872, 106.797 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -471,6 +472,8 @@ _update_shape_index = 0
 texture = ExtResource( 11 )
 
 [node name="guests" type="Node2D" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
 
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
@@ -1019,5 +1022,16 @@ text = "Game Over"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 21 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 2.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 
