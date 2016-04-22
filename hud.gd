@@ -37,7 +37,7 @@ func _setup_targets_map():
 			break
 
 func _fixed_process(delta):
-	if Globals.get("gameover") and !gameover:
+	if Globals.get("gameover") and !gameover and !finished:
 		gameover = true
 		_prepare_fadeout()
 	
@@ -48,13 +48,16 @@ func _fixed_process(delta):
 			_prepare_fadeout()
 	
 	if finished or gameover:
+		# fadeout screen
 		fadeout_timer -= delta
 		get_node("..").set_opacity(fadeout_timer / 3.0)
+		# show message
 		if gameover:
 			get_node("gameover").show()
 		if finished:
 			get_node("well_done").show()
 		if fadeout_timer <= 0:
+			# reload level to choose new targets
 			get_tree().change_scene("res://house.tscn")
 		
 	var current_targets = global_node.current_targets

@@ -87,7 +87,7 @@ max_lines_visible = -1
 [node name="finished" type="Sprite" parent="."]
 
 visibility/visible = false
-transform/pos = Vector2( 663.713, 58.7258 )
+transform/pos = Vector2( 666.971, 50.5807 )
 texture = ExtResource( 4 )
 
 [node name="gameover" type="Label" parent="."]
@@ -123,7 +123,7 @@ custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
-text = "Well done\n\nChoosing new targets..."
+text = "\t\t\t  Well done!\n\nDownloading new targets..."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
