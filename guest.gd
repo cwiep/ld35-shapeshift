@@ -13,9 +13,6 @@ const STATE = [
 	"panic"
 ]
 
-# number of states that can be randomly chosen
-const NUM_NORMAL_STATES = 3
-
 var sprite_node
 var animation_timer
 
@@ -24,13 +21,12 @@ var panic_ray
 const ray_left = Vector2(-100, 0)
 const ray_right = Vector2(100, 0)
 
-
 func _ready():
 	set_fixed_process(true)
 	roll_states = true
 	_roll_new_state()
-	sprite_node = get_node("Sprite")
 	animation_timer = 0
+	sprite_node = get_node("Sprite")
 	panic_ray = get_node("panic_ray")
 	panic_ray.add_exception(self)
 	
@@ -97,7 +93,12 @@ func _roll_new_state():
 	state_timer = rand_range(1.5, 4.0)
 	randomize()
 	if current_state == "standing":
-		current_state = get_node("/root/global").rand_choose(["moving_left", "moving_right"])
+		if get_node("look_left").is_colliding():
+			current_state = "moving_right"
+		elif get_node("look_right").is_colliding():
+			current_state = "moving_left"
+		else:
+			current_state = get_node("/root/global").rand_choose(["moving_left", "moving_right"])
 	else:
 		current_state = "standing"
 
