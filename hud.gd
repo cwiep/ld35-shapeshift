@@ -51,7 +51,9 @@ func _fixed_process(delta):
 		fadeout_timer -= delta
 		get_node("..").set_opacity(fadeout_timer / 3.0)
 		if gameover:
-			get_node("gameover").set_opacity(1 - fadeout_timer / 3.0)
+			get_node("gameover").show()
+		if finished:
+			get_node("well_done").show()
 		if fadeout_timer <= 0:
 			get_tree().change_scene("res://house.tscn")
 		
