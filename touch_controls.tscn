@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://touch_buttons/touch_button_left.png" type="Texture" id=1]
+[ext_resource path="res://touch_buttons/touch_button_right.png" type="Texture" id=2]
+[ext_resource path="res://touch_buttons/touch_button_use.png" type="Texture" id=3]
+[ext_resource path="res://touch_buttons/touch_button_attack.png" type="Texture" id=4]
+
+[node name="touch_controls" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="left" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 20, 300 )
+transform/scale = Vector2( 1.3125, 1.3125 )
+normal = ExtResource( 1 )
+pressed = null
+bitmask = null
+passby_press = false
+action = "ui_left"
+visibility_mode = 0
+
+[node name="right" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 150, 300 )
+transform/scale = Vector2( 1.3125, 1.3125 )
+normal = ExtResource( 2 )
+pressed = null
+bitmask = null
+passby_press = false
+action = "ui_right"
+visibility_mode = 0
+
+[node name="use" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 610, 300 )
+transform/scale = Vector2( 1.3125, 1.3125 )
+normal = ExtResource( 3 )
+pressed = null
+bitmask = null
+passby_press = false
+action = "ui_collect"
+visibility_mode = 0
+
+[node name="attack" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 470, 300 )
+transform/scale = Vector2( 1.3125, 1.3125 )
+normal = ExtResource( 4 )
+pressed = null
+bitmask = null
+passby_press = false
+action = "ui_attack"
+visibility_mode = 0
+
+
