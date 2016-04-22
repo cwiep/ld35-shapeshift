@@ -36,3 +36,7 @@ func all_targets_collected():
 		if current_targets[target] == 1:
 			return false
 	return true
+	
+func rand_choose(options):
+	randomize()
+	return options[randi() % options.size()]
