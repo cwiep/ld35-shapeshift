@@ -266,13 +266,14 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 3.19346, -0, 0, 13.7458, 399.622, 334.672 )
+shapes/0/transform = Matrix32( 4, -0, 0, 13.7458, 399.622, 334.672 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 5 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="pos_down" type="Position2D" parent="stairs"]
 
@@ -285,7 +286,7 @@ transform/pos = Vector2( 398.005, 267.979 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stairs"]
 
 transform/pos = Vector2( 399.622, 334.672 )
-transform/scale = Vector2( 3.19346, 13.7458 )
+transform/scale = Vector2( 4, 13.7458 )
 shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
@@ -295,13 +296,14 @@ __meta__ = { "_edit_lock_":true }
 
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 2.92305, -0, 0, 13.7458, 220.371, 169.393 )
+shapes/0/transform = Matrix32( 4, -0, 0, 13.7458, 220.371, 169.393 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 5 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="pos_down" type="Position2D" parent="stairs1"]
 
@@ -314,7 +316,7 @@ transform/pos = Vector2( 219.906, 103.67 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stairs1"]
 
 transform/pos = Vector2( 220.371, 169.393 )
-transform/scale = Vector2( 2.92305, 13.7458 )
+transform/scale = Vector2( 4, 13.7458 )
 shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
@@ -399,7 +401,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 6 )
-__meta__ = { "_edit_group_":true }
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 target_type = "toiletpaper"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_toiletpaper"]
@@ -491,7 +493,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 6 )
-__meta__ = { "_edit_group_":true }
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 target_type = "shampoo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_shampoo"]
@@ -539,6 +541,37 @@ texture = ExtResource( 7 )
 vframes = 4
 hframes = 4
 frame = 5
+
+[node name="target_cocktail" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
+
+transform/pos = Vector2( 626.521, 245.311 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 4.81964, 0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "cocktail"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_cocktail"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="targets/target_cocktail"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 1
 
 [node name="guests" type="Node2D" parent="."]
 
@@ -842,7 +875,6 @@ linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
 script/script = ExtResource( 8 )
-__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/waitress"]
 
@@ -944,7 +976,7 @@ texture = ExtResource( 10 )
 
 [node name="waitress1" type="Area2D" parent="guests" groups=[ "waiter_w" ]]
 
-transform/pos = Vector2( 653.305, 434.446 )
+transform/pos = Vector2( 653.305, 433.446 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )

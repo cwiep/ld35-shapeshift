@@ -8,7 +8,8 @@ const TARGETS = [
 	"beer",
 	"burger",
 	"shampoo",
-	"flowers"
+	"flowers",
+	"cocktail"
 ]
 
 var current_targets
