@@ -11,4 +11,5 @@ func _ready():
 	pass
 
 func is_allowed(person_type):
+	print("allowed: " + str(allowed) + ", asks: " + str(person_type))
 	return person_type == allowed or person_type == allowed2

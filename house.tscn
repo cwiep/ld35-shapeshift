@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://images/background_floor.png" type="Texture" id=1]
 [ext_resource path="res://images/house.png" type="Texture" id=2]
@@ -6,23 +6,16 @@
 [ext_resource path="res://wall.gd" type="Script" id=4]
 [ext_resource path="res://stairs.gd" type="Script" id=5]
 [ext_resource path="res://target.gd" type="Script" id=6]
-[ext_resource path="res://images/book.png" type="Texture" id=7]
-[ext_resource path="res://images/computer.png" type="Texture" id=8]
-[ext_resource path="res://images/toiletpaper.png" type="Texture" id=9]
-[ext_resource path="res://images/beer.png" type="Texture" id=10]
-[ext_resource path="res://images/hotdog.png" type="Texture" id=11]
-[ext_resource path="res://guest.gd" type="Script" id=12]
-[ext_resource path="res://images/prof_m.png" type="Texture" id=13]
-[ext_resource path="res://images/aah.png" type="Texture" id=14]
-[ext_resource path="res://images/redhead_m.png" type="Texture" id=15]
-[ext_resource path="res://images/guest_w.png" type="Texture" id=16]
-[ext_resource path="res://images/guest_m.png" type="Texture" id=17]
-[ext_resource path="res://images/waiter_w.png" type="Texture" id=18]
-[ext_resource path="res://hud.gd" type="Script" id=19]
-[ext_resource path="res://images/communicator.png" type="Texture" id=20]
-[ext_resource path="res://images/checkmark.png" type="Texture" id=21]
-[ext_resource path="res://font.fnt" type="Font" id=22]
-[ext_resource path="res://sounds/theme.ogg" type="AudioStream" id=23]
+[ext_resource path="res://images/targets.png" type="Texture" id=7]
+[ext_resource path="res://guest.gd" type="Script" id=8]
+[ext_resource path="res://images/prof_m.png" type="Texture" id=9]
+[ext_resource path="res://images/aah.png" type="Texture" id=10]
+[ext_resource path="res://images/redhead_m.png" type="Texture" id=11]
+[ext_resource path="res://images/guest_w.png" type="Texture" id=12]
+[ext_resource path="res://images/guest_m.png" type="Texture" id=13]
+[ext_resource path="res://images/waiter_w.png" type="Texture" id=14]
+[ext_resource path="res://sounds/theme.ogg" type="AudioStream" id=15]
+[ext_resource path="res://hud.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -75,6 +68,7 @@ modulate = Color( 0.753906, 0.753906, 0.753906, 1 )
 
 transform/pos = Vector2( 210.024, 432.895 )
 z/z = 1
+linear_damp = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -233,7 +227,7 @@ angular_damp = 1.0
 collision/layers = 32769
 script/script = ExtResource( 4 )
 __meta__ = { "_editor_collapsed":true }
-allowed = "prof"
+allowed = "prof_m"
 allowed2 = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lib_wall"]
@@ -330,8 +324,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="targets" type="Node2D" parent="."]
 
-__meta__ = { "_editor_collapsed":true }
-
 [node name="target_book" type="Area2D" parent="targets" groups=[ "book" ]]
 
 transform/pos = Vector2( -199.038, 267.922 )
@@ -357,11 +349,15 @@ _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="targets/target_book"]
 
+transform/scale = Vector2( 5, 5 )
 texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 3
 
 [node name="target_computer" type="Area2D" parent="targets" groups=[ "computer" ]]
 
-transform/pos = Vector2( 23.0162, 96.9017 )
+transform/pos = Vector2( 24.0162, 101.902 )
 transform/scale = Vector2( 0.618968, 0.618968 )
 input/pickable = true
 shapes/0/shape = SubResource( 5 )
@@ -384,11 +380,15 @@ _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="targets/target_computer"]
 
-texture = ExtResource( 8 )
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 4
 
 [node name="target_toiletpaper" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
 
-transform/pos = Vector2( -131.247, 423.887 )
+transform/pos = Vector2( -183.233, 442.059 )
 transform/scale = Vector2( 0.618968, 0.618968 )
 input/pickable = true
 shapes/0/shape = SubResource( 5 )
@@ -399,7 +399,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 6 )
-__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+__meta__ = { "_edit_group_":true }
 target_type = "toiletpaper"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_toiletpaper"]
@@ -411,11 +411,15 @@ _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="targets/target_toiletpaper"]
 
-texture = ExtResource( 9 )
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 2
 
 [node name="target_beer" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
 
-transform/pos = Vector2( 611.137, 402.648 )
+transform/pos = Vector2( 603.193, 407.017 )
 transform/scale = Vector2( 0.618968, 0.618968 )
 input/pickable = true
 shapes/0/shape = SubResource( 5 )
@@ -438,11 +442,45 @@ _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="targets/target_beer"]
 
-texture = ExtResource( 10 )
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
 
-[node name="target_hotdog" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
+[node name="target_burger" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
 
-transform/pos = Vector2( 826.874, 255.468 )
+transform/pos = Vector2( 826.139, 258.408 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 4.81964, 0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "burger"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_burger"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="targets/target_burger"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 6
+
+[node name="target_shampoo" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
+
+transform/pos = Vector2( -51.463, 412.737 )
 transform/scale = Vector2( 0.618968, 0.618968 )
 input/pickable = true
 shapes/0/shape = SubResource( 5 )
@@ -454,20 +492,57 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 6 )
 __meta__ = { "_edit_group_":true }
-target_type = "hotdog"
+target_type = "shampoo"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_hotdog"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_shampoo"]
 
 transform/scale = Vector2( 4.81964, 4.1599 )
 shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="targets/target_hotdog"]
+[node name="Sprite" type="Sprite" parent="targets/target_shampoo"]
 
-texture = ExtResource( 11 )
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 7
+
+[node name="target_flowers" type="Area2D" parent="targets" groups=[ "toiletpaper" ]]
+
+transform/pos = Vector2( -3.68205, 256.162 )
+transform/scale = Vector2( 0.618968, 0.618968 )
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 4.81964, 0, 0, 4.1599, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+__meta__ = { "_edit_group_":true, "_editor_collapsed":true }
+target_type = "flowers"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targets/target_flowers"]
+
+transform/scale = Vector2( 4.81964, 4.1599 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="targets/target_flowers"]
+
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+vframes = 4
+hframes = 4
+frame = 5
 
 [node name="guests" type="Node2D" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
 
 [node name="prof" type="Area2D" parent="guests" groups=[ "prof" ]]
 
@@ -481,13 +556,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/prof"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 9 )
 vframes = 4
 hframes = 4
 frame = 2
@@ -525,7 +600,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 3.04935, -63.8917 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="redhead" type="Area2D" parent="guests" groups=[ "redhead" ]]
 
@@ -539,13 +614,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/redhead"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 15 )
+texture = ExtResource( 11 )
 vframes = 4
 hframes = 4
 frame = 2
@@ -583,7 +658,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 3.04935, -63.8917 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="reddress" type="Area2D" parent="guests" groups=[ "guest_w" ]]
 
@@ -597,13 +672,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/reddress"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 16 )
+texture = ExtResource( 12 )
 vframes = 4
 hframes = 4
 
@@ -639,7 +714,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 2.82098, -66.8037 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="guest_m" type="Area2D" parent="guests" groups=[ "guest_m" ]]
 
@@ -653,13 +728,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/guest_m"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 17 )
+texture = ExtResource( 13 )
 vframes = 4
 hframes = 4
 
@@ -696,11 +771,11 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 1.43811, -61.6414 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="reddress1" type="Area2D" parent="guests" groups=[ "guest_w" ]]
 
-transform/pos = Vector2( -81.9645, 433.651 )
+transform/pos = Vector2( -96.9645, 433.651 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1.22312, 0, 0, 4.00099, 0, 0 )
@@ -710,13 +785,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/reddress1"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 16 )
+texture = ExtResource( 12 )
 vframes = 4
 hframes = 4
 
@@ -752,7 +827,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 2.82098, -66.8037 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="waitress" type="Area2D" parent="guests" groups=[ "waiter_w" ]]
 
@@ -766,13 +841,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/waitress"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 18 )
+texture = ExtResource( 14 )
 vframes = 4
 hframes = 4
 
@@ -808,7 +883,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 2.82098, -66.8037 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="guest_m1" type="Area2D" parent="guests" groups=[ "guest_m" ]]
 
@@ -822,13 +897,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/guest_m1"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 17 )
+texture = ExtResource( 13 )
 vframes = 4
 hframes = 4
 
@@ -865,7 +940,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 1.43811, -61.6414 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="waitress1" type="Area2D" parent="guests" groups=[ "waiter_w" ]]
 
@@ -879,13 +954,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/waitress1"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 18 )
+texture = ExtResource( 14 )
 vframes = 4
 hframes = 4
 
@@ -921,7 +996,7 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 2.82098, -66.8037 )
-texture = ExtResource( 14 )
+texture = ExtResource( 10 )
 
 [node name="reddress2" type="Area2D" parent="guests" groups=[ "guest_w" ]]
 
@@ -935,13 +1010,13 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 5
-script/script = ExtResource( 12 )
+script/script = ExtResource( 8 )
 __meta__ = { "_edit_group_":true, "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="guests/reddress2"]
 
 transform/scale = Vector2( 5, 5 )
-texture = ExtResource( 16 )
+texture = ExtResource( 12 )
 vframes = 4
 hframes = 4
 
@@ -977,127 +1052,11 @@ type_mask = 16
 
 visibility/visible = false
 transform/pos = Vector2( 2.82098, -66.8037 )
-texture = ExtResource( 14 )
-
-[node name="hud" type="CanvasLayer" parent="."]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-script/script = ExtResource( 19 )
-__meta__ = { "_editor_collapsed":true }
-
-[node name="Sprite" type="Sprite" parent="hud"]
-
-transform/pos = Vector2( 660.471, 59.7516 )
-transform/scale = Vector2( 1.55145, 1.55145 )
-texture = ExtResource( 20 )
-
-[node name="Label" type="Label" parent="hud"]
-
-margin/left = 638.0
-margin/top = 23.0
-margin/right = 695.0
-margin/bottom = 36.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
-text = "to collect:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="target1" type="Label" parent="hud"]
-
-margin/left = 637.0
-margin/top = 36.0
-margin/right = 694.0
-margin/bottom = 49.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="target2" type="Label" parent="hud"]
-
-margin/left = 635.0
-margin/top = 49.0
-margin/right = 692.0
-margin/bottom = 62.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="target3" type="Label" parent="hud"]
-
-margin/left = 634.0
-margin/top = 62.0
-margin/right = 691.0
-margin/bottom = 75.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="finished" type="Sprite" parent="hud"]
-
-visibility/visible = false
-transform/pos = Vector2( 663.713, 58.7258 )
-texture = ExtResource( 21 )
-
-[node name="gameover" type="Label" parent="hud"]
-
-visibility/visible = false
-margin/left = 263.0
-margin/top = 213.0
-margin/right = 462.0
-margin/bottom = 240.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 22 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 1
-text = "Game Over"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="well_done" type="Label" parent="hud"]
-
-visibility/visible = false
-margin/left = 129.0
-margin/top = 178.0
-margin/right = 582.0
-margin/bottom = 259.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 22 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 1
-text = "Well done\n\nChoosing new targets..."
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+texture = ExtResource( 10 )
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 23 )
+stream/stream = ExtResource( 15 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 2.0
@@ -1105,5 +1064,7 @@ stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
+
+[node name="hud" parent="." instance=ExtResource( 16 )]
 
 

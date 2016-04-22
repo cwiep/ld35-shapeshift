@@ -6,7 +6,9 @@ const TARGETS = [
 	"computer",
 	"toiletpaper",
 	"beer",
-	"hotdog"
+	"burger",
+	"shampoo",
+	"flowers"
 ]
 
 var current_targets
@@ -19,12 +21,16 @@ func is_in_targets(target_string):
 	return current_targets[target_string] == 1
 
 func set_is_collected(target_string):
+	print("set " + target_string + " = 0")
 	current_targets[target_string] = 0
 
 func roll_new_targets():
-	current_targets = {"book": 0, "computer": 0, "toiletpaper": 0, "beer": 0, "hotdog": 0}
+	current_targets = {}
+	for t in TARGETS:
+		current_targets[t] = 0
 	randomize()
 	var rand_index = randi() % TARGETS.size()
+	# choose 3 targets to collect
 	for i in range(3):
 		while is_in_targets(TARGETS[rand_index]):
 			rand_index = randi() % TARGETS.size()
