@@ -96,7 +96,10 @@ func _check_panic_ray():
 func _roll_new_state():
 	state_timer = rand_range(1.5, 4.0)
 	randomize()
-	current_state = STATE[randi() % NUM_NORMAL_STATES]
+	if current_state == "standing":
+		current_state = get_node("/root/global").rand_choose(["moving_left", "moving_right"])
+	else:
+		current_state = "standing"
 
 func kill():
 	roll_states = false

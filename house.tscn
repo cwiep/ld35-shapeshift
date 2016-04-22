@@ -473,8 +473,6 @@ texture = ExtResource( 11 )
 
 [node name="guests" type="Node2D" parent="."]
 
-__meta__ = { "_editor_collapsed":true }
-
 [node name="professor" type="Area2D" parent="guests" groups=[ "prof" ]]
 
 transform/pos = Vector2( 551.038, 267.848 )
