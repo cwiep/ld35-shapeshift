@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://images/guest_m.png" type="Texture" id=2]
 [ext_resource path="res://images/prof_m.png" type="Texture" id=3]
 [ext_resource path="res://images/guest_w.png" type="Texture" id=4]
 [ext_resource path="res://images/redhead_m.png" type="Texture" id=5]
-[ext_resource path="res://sounds/collect.wav" type="Sample" id=6]
-[ext_resource path="res://sounds/hit.wav" type="Sample" id=7]
+[ext_resource path="res://images/waiter_w.png" type="Texture" id=6]
+[ext_resource path="res://sounds/collect.wav" type="Sample" id=7]
+[ext_resource path="res://sounds/hit.wav" type="Sample" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,8 +16,8 @@ extents = Vector2( 10, 10 )
 
 [sub_resource type="SampleLibrary" id=2]
 
-samples/collect = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
-samples/hit = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/hit = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/collect = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
 
 [node name="player" type="Area2D"]
 
@@ -61,6 +62,14 @@ hframes = 4
 visibility/visible = false
 transform/scale = Vector2( 5, 5 )
 texture = ExtResource( 5 )
+vframes = 4
+hframes = 4
+
+[node name="sprite_waiter_w" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 6 )
 vframes = 4
 hframes = 4
 
