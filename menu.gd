@@ -18,5 +18,8 @@ func _input(event):
 		get_node("Sprite").set_frame(0)
 	elif event.is_action_pressed("ui_quit") and !event.is_echo():
 		get_tree().quit()
-
-
+	elif event.is_action_pressed("fullscreen") and !event.is_echo():
+		if OS.is_window_fullscreen():
+			OS.set_window_fullscreen(false)
+		else:
+			OS.set_window_fullscreen(true)

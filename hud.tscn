@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://hud.gd" type="Script" id=1]
+[ext_resource path="res://images/communicator.png" type="Texture" id=2]
+[ext_resource path="res://font8.fnt" type="Font" id=3]
+[ext_resource path="res://images/checkmark.png" type="Texture" id=4]
+[ext_resource path="res://font.fnt" type="Font" id=5]
+
+[node name="hud" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 669.388, 49.0964 )
+transform/scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+
+margin/left = 641.0
+margin/top = 21.0
+margin/right = 698.0
+margin/bottom = 28.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+text = "to collect:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="target1" type="Label" parent="."]
+
+margin/left = 641.0
+margin/top = 33.0
+margin/right = 698.0
+margin/bottom = 40.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+text = "test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="target2" type="Label" parent="."]
+
+margin/left = 641.0
+margin/top = 47.0
+margin/right = 698.0
+margin/bottom = 54.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+text = "test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="target3" type="Label" parent="."]
+
+margin/left = 641.0
+margin/top = 61.0
+margin/right = 698.0
+margin/bottom = 68.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.394878, 0.9375, 0.300293, 1 )
+text = "test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="finished" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 666.971, 50.5807 )
+texture = ExtResource( 4 )
+
+[node name="gameover" type="Label" parent="."]
+
+visibility/visible = false
+margin/left = 263.0
+margin/top = 213.0
+margin/right = 462.0
+margin/bottom = 240.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "Game Over"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="well_done" type="Label" parent="."]
+
+visibility/visible = false
+margin/left = 129.0
+margin/top = 178.0
+margin/right = 582.0
+margin/bottom = 259.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "\t\t\t  Well done!\n\nDownloading new targets..."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
